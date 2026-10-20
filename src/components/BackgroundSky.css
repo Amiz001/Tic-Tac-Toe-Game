@@ -1,0 +1,72 @@
+.sky-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #3b9fe4;
+}
+
+/* Primary looping sky layer with CartoonSky.webp */
+.sky-layer-primary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/CartoonSky.webp');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: 0 0;
+  animation: driftCloudsPrimary 110s linear infinite;
+  will-change: background-position;
+  pointer-events: none;
+}
+
+/* Secondary layer for subtle parallax depth */
+.sky-layer-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/CartoonSky.webp');
+  background-repeat: repeat-x;
+  background-size: auto 115%;
+  background-position: 500px 0;
+  opacity: 0.35;
+  animation: driftCloudsSecondary 160s linear infinite;
+  will-change: background-position;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.sky-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes driftCloudsPrimary {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2048px 0;
+  }
+}
+
+@keyframes driftCloudsSecondary {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 2048px 0;
+  }
+}

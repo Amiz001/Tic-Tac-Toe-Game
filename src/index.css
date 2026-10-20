@@ -1,40 +1,145 @@
 :root {
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  --font-game: 'Luckiest Guy', cursive, fantasy;
+  --font-body: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Game Theme Colors */
+  --color-sky-blue: #4fa5e8;
+  --color-wood-dark: #4b2308;
+  --color-wood-mid: #8a4816;
+  --color-wood-light: #d88f34;
+  --color-wood-pale: #fde8b3;
+  --color-leaf-green: #48a123;
+  --color-leaf-dark: #225a0d;
+  --color-leaf-bright: #69ca30;
+  --color-ruby-red: #d9241b;
+  --color-gold-yellow: #f8c115;
+  --color-parchment: #fdecc3;
+  
+  /* Text and Shadow styling */
+  --shadow-cartoon-3d: 0 6px 0 #2c1303, 0 10px 18px rgba(0, 0, 0, 0.35);
+  --shadow-wood-button: 0 5px 0 #3b1c05, 0 8px 15px rgba(0, 0, 0, 0.4);
+  --shadow-wood-inset: inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.3);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Custom Wooden Cursor */
+  --game-cursor: url('/images/wooden_cursor.png') 3 2, url('/images/wooden_cursor.svg') 3 2, auto;
+  --game-pointer: url('/images/wooden_cursor.png') 3 2, url('/images/wooden_cursor.svg') 3 2, pointer;
 }
-body{
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-sky-blue);
+  font-family: var(--font-body);
+  color: #3e1e07;
+  cursor: var(--game-cursor);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 20px;
-  height: 100vh;
+  flex-direction: column;
 }
-.btn{
-    height: 60px;
-    width: 60px;
-    background-color: rgb(229, 225, 0);
-    border: 2px solid black;
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
-    margin: 0;
 
-    padding: 0; 
-    text-align: center; 
-    line-height: 60px; 
-    display: inline-block; 
-    vertical-align: middle; 
+button, a, input, select {
+  cursor: var(--game-pointer);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+/* Moving Sky Background */
+@keyframes skyDrift {
+  0% {
+    background-position: 0px 0px;
   }
-.btn:hover{
-  color: rgb(229, 225, 0);
-  background-color: black;
+  100% {
+    background-position: -2048px 0px;
+  }
+}
+
+/* Gentle floating cloud layer */
+@keyframes cloudDriftSlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Rubberband pop animation for bug placement */
+@keyframes bugPop {
+  0% {
+    transform: scale(0.1) rotate(-15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(6deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Winning piece celebratory pulse */
+@keyframes winPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  }
+  50% {
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 25px rgba(255, 230, 0, 1));
+  }
+}
+
+/* Active turn indicator pulse */
+@keyframes turnGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(105, 202, 48, 0.7), 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(105, 202, 48, 0), 0 12px 26px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+  }
+}
+
+/* Modal zoom-in bounce */
+@keyframes modalBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(40px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.04) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Button click press animation */
+.wood-btn-click:active {
+  transform: translateY(3px) scale(0.97) !important;
+  box-shadow: 0 2px 0 #2c1303, 0 4px 10px rgba(0, 0, 0, 0.3) !important;
 }
