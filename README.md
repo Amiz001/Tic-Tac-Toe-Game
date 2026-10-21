@@ -1,5 +1,9 @@
 # 🐞 Tic-Tac-Toe: Bug Battle Adventure
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Play_Online-success?style=for-the-badge&logo=vercel&logoColor=white)](https://bugbot-pearl.vercel.app)
+
+> **🌐 Play Live Online:** [https://bugbot-pearl.vercel.app](https://bugbot-pearl.vercel.app)
+
 A whimsical, cartoon-styled desktop and mobile Tic-Tac-Toe game crafted with React 18, Vite, and Vanilla CSS. Built faithfully to replicate the wooden-jungle board aesthetics of the reference artwork with animated drifting clouds, custom wooden cursors, cute ladybug avatars, intelligent AI (including unbeatable Minimax), calm ambient music, organic sound effects, and local state caching with TTL auto-expiry.
 
 ---
