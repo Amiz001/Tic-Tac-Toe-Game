@@ -37,19 +37,62 @@ export default function SettingsModal({
         </div>
 
         <div className="settings-body">
-          {/* Sound toggles */}
-          <div className="settings-row">
-            <span className="settings-label">BACKGROUND MUSIC</span>
-            <button
-              type="button"
-              className={`toggle-pill-btn ${isBgmActive ? 'on' : 'off'}`}
-              onClick={() => {
-                audioService.playClickSound();
-                onToggleBGM();
-              }}
-            >
-              {isBgmActive ? '🔊 ON' : '🔇 MUTED'}
-            </button>
+          {/* Sound & Music Toggles & Sliders */}
+          <div className="settings-section-card">
+            <div className="settings-row">
+              <span className="settings-label">BACKGROUND MUSIC</span>
+              <button
+                type="button"
+                className={`toggle-pill-btn ${isBgmActive ? 'on' : 'off'}`}
+                onClick={() => {
+                  audioService.playClickSound();
+                  onToggleBGM();
+                }}
+              >
+                {isBgmActive ? '🔊 ON' : '🔇 MUTED'}
+              </button>
+            </div>
+            <div className="slider-row">
+              <span className="slider-label">Music Volume:</span>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                defaultValue={Math.round(audioService.bgmVolume * 100)}
+                onChange={(e) => audioService.setBGMVolume(Number(e.target.value) / 100)}
+                className="volume-slider"
+              />
+            </div>
+          </div>
+
+          <div className="settings-section-card">
+            <div className="settings-row">
+              <span className="settings-label">SOUND EFFECTS (SFX)</span>
+              <button
+                type="button"
+                className={`toggle-pill-btn ${!audioService.sfxMuted ? 'on' : 'off'}`}
+                onClick={() => {
+                  audioService.toggleSFX();
+                  audioService.playClickSound();
+                }}
+              >
+                {!audioService.sfxMuted ? '🔔 ON' : '🔕 MUTED'}
+              </button>
+            </div>
+            <div className="slider-row">
+              <span className="slider-label">SFX Volume:</span>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                defaultValue={Math.round(audioService.sfxVolume * 100)}
+                onChange={(e) => {
+                  audioService.setSFXVolume(Number(e.target.value) / 100);
+                  audioService.playClickSound();
+                }}
+                className="volume-slider"
+              />
+            </div>
           </div>
 
           {/* Difficulty (Single Player only) */}

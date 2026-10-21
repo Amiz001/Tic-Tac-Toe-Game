@@ -21,6 +21,19 @@ export default function WinnerModal({
 
   return (
     <div className="winner-backdrop">
+      {/* Celebratory cartoon particle bursts for victory */}
+      {!isDraw && (
+        <div className="confetti-container" aria-hidden="true">
+          {[...Array(16)].map((_, i) => (
+            <span key={i} className={`confetti-piece confetti-${i % 4}`} style={{
+              left: `${10 + (i * 5.2)}%`,
+              animationDelay: `${(i % 5) * 0.15}s`,
+              transform: `rotate(${(i * 45) % 360}deg)`
+            }} />
+          ))}
+        </div>
+      )}
+
       <div className="winner-dialog">
         {/* Banner Header */}
         <div className="winner-banner">

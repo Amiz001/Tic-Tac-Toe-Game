@@ -9,6 +9,41 @@
   justify-content: center;
   padding: 16px;
   animation: fadeIn 0.3s ease;
+  overflow: hidden;
+}
+
+/* Confetti particles */
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1055;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 14px;
+  height: 20px;
+  border-radius: 4px;
+  animation: confettiFall 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.confetti-0 { background: #ffde59; width: 16px; height: 16px; border-radius: 50%; }
+.confetti-1 { background: #62c422; width: 12px; height: 22px; border-radius: 6px; }
+.confetti-2 { background: #ff4757; width: 14px; height: 14px; transform: rotate(45deg); }
+.confetti-3 { background: #2ed573; width: 18px; height: 10px; border-radius: 999px; }
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg) scale(1);
+    opacity: 0.2;
+  }
 }
 
 .winner-dialog {
