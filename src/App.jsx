@@ -6,6 +6,7 @@ import Controls from './components/Controls';
 import SetupModal from './components/SetupModal';
 import SettingsModal from './components/SettingsModal';
 import WinnerModal from './components/WinnerModal';
+import ExitModal from './components/ExitModal';
 import { checkWinner, getAIMove } from './utils/gameLogic';
 import {
   saveGameState,
@@ -22,6 +23,7 @@ export default function App() {
   const [hasSavedGame, setHasSavedGame] = useState(Boolean(initialCache.current));
   const [isSetupOpen, setIsSetupOpen] = useState(!initialCache.current);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
   // Game Settings & State
   const [gameMode, setGameMode] = useState(initialCache.current?.gameMode || 'single');
@@ -179,14 +181,22 @@ export default function App() {
     handleRestartBoard();
   };
 
-  // Exit game and wipe session cache
-  const handleExitGame = () => {
-    if (window.confirm('Do you want to exit the current game? This will reset the match.')) {
-      clearGameState();
-      setHasSavedGame(false);
-      handleRestartBoard();
-      setIsSetupOpen(true);
-    }
+  // Request exit confirmation (opens cartoon exit modal)
+  const handleRequestExit = () => {
+    setIsExitModalOpen(true);
+  };
+
+  // Confirm exit and wipe session cache
+  const handleConfirmExit = () => {
+    setIsExitModalOpen(false);
+    clearGameState();
+    setHasSavedGame(false);
+    handleRestartBoard();
+    setIsSetupOpen(true);
+  };
+
+  const handleCancelExit = () => {
+    setIsExitModalOpen(false);
   };
 
   // Toggle background music
@@ -207,7 +217,7 @@ export default function App() {
             currentTurn={currentTurn}
             player1={player1}
             player2={player2}
-            onExitGame={handleExitGame}
+            onExitGame={handleRequestExit}
             isAiThinking={isAiThinking}
           />
 
@@ -277,7 +287,14 @@ export default function App() {
         player1={player1}
         player2={player2}
         onPlayAgain={handleRestartBoard}
-        onExit={handleExitGame}
+        onExit={handleRequestExit}
+      />
+
+      {/* Custom Cartoon Exit Confirmation Modal */}
+      <ExitModal
+        isOpen={isExitModalOpen}
+        onConfirm={handleConfirmExit}
+        onCancel={handleCancelExit}
       />
     </BackgroundSky>
   );

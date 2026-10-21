@@ -17,6 +17,8 @@ export default function SettingsModal({
   isBgmActive,
   onToggleBGM,
 }) {
+  const [confirmReset, setConfirmReset] = React.useState(false);
+
   if (!isOpen) return null;
 
   return (
@@ -121,16 +123,20 @@ export default function SettingsModal({
           <div className="settings-actions-stack">
             <button
               type="button"
-              className="settings-action-btn btn-reset-score"
+              className={`settings-action-btn btn-reset-score ${confirmReset ? 'confirming' : ''}`}
               onClick={() => {
                 audioService.playClickSound();
-                if (window.confirm('Reset all scores to 0?')) {
+                if (confirmReset) {
                   onResetScores();
+                  setConfirmReset(false);
                   onClose();
+                } else {
+                  setConfirmReset(true);
+                  setTimeout(() => setConfirmReset(false), 3500);
                 }
               }}
             >
-              🏆 RESET SCORES
+              {confirmReset ? '⚠️ TAP AGAIN TO RESET SCORES' : '🏆 RESET SCORES'}
             </button>
 
             <button
