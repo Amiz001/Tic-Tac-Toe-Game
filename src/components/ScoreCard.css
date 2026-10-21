@@ -1,0 +1,175 @@
+.scorecard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.scorecard-title {
+  font-family: var(--font-game);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: #ff9122;
+  text-shadow: 0 2px 0 #542203, 0 4px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 6px;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scorecard-frame {
+  width: 96px;
+  height: 96px;
+  background: #f7e6be;
+  background-image: linear-gradient(135deg, #fff3d6 0%, #ecd4a2 100%);
+  border: 5px solid #a35a1b;
+  border-radius: 14px;
+  box-shadow: 0 6px 0 #4e2508, 0 10px 18px rgba(0, 0, 0, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* Active turn indicator */
+.scorecard-container.active-turn .scorecard-frame {
+  border-color: #55b719;
+  box-shadow: 0 6px 0 #2b6d08, 0 0 18px rgba(105, 202, 48, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  animation: turnBounce 1.8s infinite ease-in-out;
+}
+
+.scorecard-container.active-turn .scorecard-title {
+  color: #72db22;
+  text-shadow: 0 2px 0 #1b4b04, 0 0 10px rgba(114, 219, 34, 0.6);
+}
+
+.scorecard-avatar-well {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.scorecard-avatar-img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+}
+
+.scorecard-avatar-symbol {
+  font-family: var(--font-game);
+  font-size: 3rem;
+  line-height: 1;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Red Circular Badge with Leaves (overlapping bottom right) */
+.score-badge-wrapper {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.badge-leaves-svg {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  top: -10px;
+  left: -10px;
+  z-index: 1;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.score-badge-circle {
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff5e57 0%, #d92015 65%, #940f07 100%);
+  border: 3px solid #700c06;
+  box-shadow: 0 3px 0 #3a0401, 0 5px 8px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-badge-number {
+  font-family: var(--font-game);
+  font-size: 1.35rem;
+  color: #ffffff;
+  text-shadow: 0 2px 0 #590803, 0 0 4px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+}
+
+.turn-indicator-pill {
+  position: absolute;
+  top: -12px;
+  background: linear-gradient(180deg, #64c820 0%, #429c0f 100%);
+  border: 2px solid #205c04;
+  border-radius: 999px;
+  padding: 1px 8px;
+  color: #ffffff;
+  font-family: var(--font-game);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 0 #133a02, 0 3px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 0 #133a02;
+  animation: pulsePill 1.2s infinite ease-in-out;
+}
+
+@keyframes turnBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulsePill {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .scorecard-frame {
+    width: 80px;
+    height: 80px;
+  }
+  .scorecard-title {
+    font-size: 0.95rem;
+    max-width: 100px;
+  }
+  .score-badge-wrapper {
+    width: 44px;
+    height: 44px;
+    bottom: -12px;
+    right: -12px;
+  }
+  .score-badge-circle {
+    width: 34px;
+    height: 34px;
+  }
+  .score-badge-number {
+    font-size: 1.15rem;
+  }
+}

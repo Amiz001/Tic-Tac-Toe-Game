@@ -1,0 +1,199 @@
+.game-board-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3D Jungle Banner Header */
+.board-header-banner {
+  position: absolute;
+  top: -24px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.game-title {
+  font-family: var(--font-game);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  letter-spacing: 2px;
+  color: #7ce418;
+  -webkit-text-stroke: 2.5px #1c5205;
+  text-shadow: 
+    0 3px 0 #1c5205,
+    0 6px 0 #572909,
+    0 8px 14px rgba(0, 0, 0, 0.45);
+  margin: 0;
+  transform: rotate(-0.5deg);
+}
+
+/* Board Frame Container */
+.board-frame-container {
+  position: relative;
+  width: min(78vw, 520px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.35));
+}
+
+.board-frame-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Interactive Red "X" Button on the wooden frame's top-right corner */
+.board-exit-btn {
+  position: absolute;
+  top: 12.5%;
+  right: 7.2%;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 25;
+  cursor: var(--game-pointer);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.board-exit-btn:hover {
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.8));
+}
+
+.board-exit-btn:active {
+  transform: scale(0.95);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* 3x3 Parchment Play Grid */
+.parchment-grid {
+  position: absolute;
+  top: 15%;
+  left: 14.8%;
+  width: 72%;
+  height: 64.2%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  z-index: 15;
+}
+
+.grid-cell {
+  position: relative;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--game-pointer);
+  transition: background-color 0.15s ease;
+}
+
+.grid-cell:disabled {
+  cursor: default;
+}
+
+/* Bug / Marker Placed inside Cell */
+.cell-marker-container {
+  width: 82%;
+  height: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bugPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.cell-bug-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.35));
+  transition: transform 0.2s ease;
+}
+
+.cell-symbol {
+  font-family: var(--font-game);
+  font-size: clamp(2.5rem, 7vw, 4.2rem);
+  line-height: 1;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Ghost Preview on hover */
+.cell-ghost-preview {
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  width: 75%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cell.empty:hover:not(:disabled) .cell-ghost-preview {
+  opacity: 0.45;
+  transform: scale(0.92);
+}
+
+.ghost-bug-img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.ghost-symbol {
+  font-family: var(--font-game);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  line-height: 1;
+}
+
+/* Winning Cell Highlight */
+.winning-cell .cell-marker-container {
+  animation: winPulse 1.2s infinite ease-in-out;
+  z-index: 5;
+}
+
+.winning-cell::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 14px;
+  background: radial-gradient(circle, rgba(255, 230, 0, 0.35) 0%, transparent 75%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .board-frame-container {
+    width: min(92vw, 420px);
+  }
+  .board-header-banner {
+    top: -18px;
+  }
+  .game-title {
+    font-size: 2.2rem;
+  }
+}

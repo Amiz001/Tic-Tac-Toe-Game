@@ -1,0 +1,172 @@
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1020;
+  background: rgba(12, 26, 42, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.settings-dialog {
+  background: #fdf5de;
+  border: 6px solid #6b3711;
+  border-radius: 24px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(90, 42, 8, 0.2);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+  position: relative;
+  animation: modalBounce 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.settings-header {
+  background: linear-gradient(180deg, #944d18 0%, #68340d 100%);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid #4a2205;
+}
+
+.settings-title {
+  font-family: var(--font-game);
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  color: #ffde59;
+  text-shadow: 0 2px 0 #3e1b04, 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin: 0;
+}
+
+.settings-close-x {
+  background: #d9241b;
+  border: 2px solid #5a0904;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  font-family: var(--font-game);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+.settings-close-x:hover {
+  transform: scale(1.12);
+  background: #ef3328;
+}
+
+.settings-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff8e8;
+  padding: 12px 16px;
+  border: 2px solid #b57a41;
+  border-radius: 14px;
+}
+
+.settings-label {
+  font-family: var(--font-game);
+  font-size: 0.95rem;
+  color: #552706;
+  letter-spacing: 0.5px;
+}
+
+.toggle-pill-btn {
+  padding: 6px 14px;
+  font-family: var(--font-game);
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 2.5px solid;
+  transition: all 0.15s ease;
+}
+
+.toggle-pill-btn.on {
+  background: #64c820;
+  border-color: #215c04;
+  color: #fff;
+  box-shadow: 0 3px 0 #143b01;
+}
+
+.toggle-pill-btn.off {
+  background: #b0b0b0;
+  border-color: #555555;
+  color: #333;
+}
+
+.settings-diff-group {
+  display: flex;
+  gap: 6px;
+}
+
+.diff-opt-btn {
+  padding: 6px 10px;
+  font-family: var(--font-game);
+  font-size: 0.8rem;
+  background: #f1dfbf;
+  color: #552d0e;
+  border: 2px solid #8c4919;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.diff-opt-btn.active {
+  background: #f79824;
+  color: #fff;
+  border-color: #6d3302;
+  box-shadow: 0 2px 0 #4f2100;
+}
+
+.settings-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.settings-action-btn {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--font-game);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  border-radius: 14px;
+  color: #fff;
+  transition: all 0.15s ease;
+}
+
+.btn-reset-score {
+  background: linear-gradient(180deg, #f79824 0%, #c46808 100%);
+  border: 3px solid #6b3401;
+  box-shadow: 0 4px 0 #482301;
+}
+
+.btn-change-mode {
+  background: linear-gradient(180deg, #3a97d4 0%, #1f6492 100%);
+  border: 3px solid #114161;
+  box-shadow: 0 4px 0 #0b2b40;
+}
+
+.btn-resume-play {
+  background: linear-gradient(180deg, #6ec822 0%, #44970c 100%);
+  border: 3px solid #235c03;
+  box-shadow: 0 4px 0 #143b01;
+}
+
+.settings-action-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}

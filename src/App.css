@@ -1,0 +1,48 @@
+.game-desktop-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  max-width: 900px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Board and Side Controls Row */
+.board-and-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+}
+
+/* Scorecards Row */
+.scorecards-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Mobile & Tablet Adaptations */
+@media (max-width: 720px) {
+  .game-desktop-stage {
+    gap: 16px;
+    padding: 10px;
+  }
+
+  .board-and-controls-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .scorecards-row {
+    gap: 36px;
+  }
+}
