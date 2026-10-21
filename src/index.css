@@ -56,6 +56,34 @@ button, a, input, select {
   cursor: var(--game-pointer);
 }
 
+/* Global Cartoon Wooden Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eedcb8;
+  border-radius: 8px;
+  border: 1px solid #994c16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9b4f17 0%, #68300a 100%);
+  border-radius: 8px;
+  border: 2px solid #ecd4a4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b85e1e 0%, #7d3b0e 100%);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #8c4212 #eedcb8;
+}
+
 /* =========================================
    ANIMATIONS
 ========================================= */
